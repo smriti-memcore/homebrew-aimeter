@@ -14,7 +14,7 @@ class Aimeter < Formula
     libexec.install "index.html", "index.css", "dashboard.js"
     libexec.install "com.aimeter.app.plist"
 
-    (bin/"aimeter").write_env_script libexec/"aimeter"
+    bin.install_symlink libexec/"aimeter"
   end
 
   service do
@@ -26,13 +26,7 @@ class Aimeter < Formula
 
   def caveats
     <<~EOS
-      AIMeter is installed!
-
-      ⚠️ Gatekeeper Note: Since the binary is pre-compiled, macOS may quarantine it.
-      If you get a verification/developer error, trust the binary by running:
-        xattr -d com.apple.quarantine $(brew --prefix)/opt/aimeter/libexec/aimeter
-
-      To start the background service on login:
+      AIMeter is installed! To start on login:
         brew services start aimeter
 
       Then configure your AI tools:
