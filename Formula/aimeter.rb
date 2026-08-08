@@ -14,7 +14,7 @@ class Aimeter < Formula
     libexec.install "index.html", "index.css", "dashboard.js"
     libexec.install "com.aimeter.app.plist"
 
-    (bin/"aimeter").write_env_script libexec/"aimeter"
+    bin.install_symlink libexec/"aimeter"
   end
 
   service do
