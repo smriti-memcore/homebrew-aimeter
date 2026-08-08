@@ -2,8 +2,8 @@ class Aimeter < Formula
   desc "Real-time AI API usage and cost monitor for macOS"
   homepage "https://github.com/smriti-memcore/aimeter"
   # URL and sha256 updated after each release by the release workflow
-  url "https://github.com/smriti-memcore/aimeter/releases/download/v0.1.3/aimeter-v0.1.3.tar.gz"
-  sha256 "f1c306bb978076e63f4fb44e563bf4086e8fb1e707ba7cf98d094e0caf999e66"
+  url "https://github.com/smriti-memcore/aimeter/releases/download/v0.1.4/aimeter-v0.1.4.tar.gz"
+  sha256 "d34ef4b48b34f8867e1594c91b7452fc8a99fe4db957b7403e28bc2e55ce2a83"
   license "MIT"
 
   depends_on :macos
@@ -15,18 +15,6 @@ class Aimeter < Formula
     libexec.install "com.aimeter.app.plist"
 
     bin.install_symlink libexec/"aimeter"
-  end
-
-  def post_install
-    plist_src = libexec/"com.aimeter.app.plist"
-    plist_dst = Dir.home + "/Library/LaunchAgents/com.aimeter.app.plist"
-
-    if File.exist?(plist_src) && !File.exist?(plist_dst)
-      content = File.read(plist_src)
-      content = content.gsub("__AIMETER_BIN__", (opt_libexec/"aimeter").to_s)
-      content = content.gsub("__HOME__", Dir.home)
-      File.write(plist_dst, content)
-    end
   end
 
   service do
@@ -43,21 +31,13 @@ class Aimeter < Formula
       Start the daemon (API proxy + dashboard):
         brew services start aimeter
 
-      Start the menu bar app (runs in your GUI session):
-        launchctl load ~/Library/LaunchAgents/com.aimeter.app.plist
-
-      Or launch manually:
-        aimeter &
-
-      Configure your AI tools:
+      Configure AI tools and install menu bar app:
         aimeter setup
 
       Dashboard: http://127.0.0.1:5333
 
       To uninstall cleanly:
         aimeter setup --undo
-        launchctl unload ~/Library/LaunchAgents/com.aimeter.app.plist
-        rm ~/Library/LaunchAgents/com.aimeter.app.plist
         brew services stop aimeter
         brew uninstall aimeter
     EOS
