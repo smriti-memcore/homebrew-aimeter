@@ -2,8 +2,8 @@ class Aimeter < Formula
   desc "Real-time AI API usage and cost monitor for macOS"
   homepage "https://github.com/smriti-memcore/aimeter"
   # URL and sha256 updated after each release by the release workflow
-  url "https://github.com/smriti-memcore/aimeter/releases/download/v0.1.1/aimeter-v0.1.1.tar.gz"
-  sha256 "f894220b87b271cb0e7e4ea8ac3664d87b5adb23cdd1fea9d7b2b56857c46590"
+  url "https://github.com/smriti-memcore/aimeter/releases/download/v0.1.2/aimeter-v0.1.2.tar.gz"
+  sha256 "5d47adf114ad17a4db47123c62996adde66d13b59650b9041e01724e3ae948cf"
   license "MIT"
 
   depends_on :macos
@@ -14,7 +14,7 @@ class Aimeter < Formula
     libexec.install "index.html", "index.css", "dashboard.js"
     libexec.install "com.aimeter.app.plist"
 
-    bin.install_symlink libexec/"aimeter"
+    (bin/"aimeter").write_env_script libexec/"aimeter"
   end
 
   service do
@@ -26,7 +26,13 @@ class Aimeter < Formula
 
   def caveats
     <<~EOS
-      AIMeter is installed! To start on login:
+      AIMeter is installed!
+
+      ⚠️ Gatekeeper Note: Since the binary is pre-compiled, macOS may quarantine it.
+      If you get a verification/developer error, trust the binary by running:
+        xattr -d com.apple.quarantine $(brew --prefix)/opt/aimeter/libexec/aimeter
+
+      To start the background service on login:
         brew services start aimeter
 
       Then configure your AI tools:
