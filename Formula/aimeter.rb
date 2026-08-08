@@ -2,8 +2,8 @@ class Aimeter < Formula
   desc "Real-time AI API usage and cost monitor for macOS"
   homepage "https://github.com/smriti-memcore/aimeter"
   # URL and sha256 updated after each release by the release workflow
-  url "https://github.com/smriti-memcore/aimeter/releases/download/v0.1.7/aimeter-v0.1.7.tar.gz"
-  sha256 "890b2017100ea32f2fe16860fb07aff1a3c36f35c6d938ab38b48b1351d5230f"
+  url "https://github.com/smriti-memcore/aimeter/releases/download/v0.1.8/aimeter-v0.1.8.tar.gz"
+  sha256 "9c975d35f098f3bd5a5e500f93b05da085faac3aefbf0a279e7d96fd8e3c04e0"
   license "MIT"
 
   depends_on :macos
@@ -22,7 +22,6 @@ class Aimeter < Formula
     keep_alive crashed: true
     log_path var/"log/aimeter.log"
     error_log_path var/"log/aimeter.log"
-    environment_variables AIMETER_DATA_DIR: "#{Dir.home}/.aimeter"
   end
 
   def caveats
