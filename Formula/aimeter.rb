@@ -2,8 +2,8 @@ class Aimeter < Formula
   desc "Real-time AI API usage and cost monitor for macOS"
   homepage "https://github.com/smriti-memcore/aimeter"
   # URL and sha256 updated after each release by the release workflow
-  url "https://github.com/smriti-memcore/aimeter/releases/download/v0.2.2/aimeter-v0.2.2.tar.gz"
-  sha256 "e12d293a7753c1df578b2529544acf767a972987bf13f5a4807bd2c1a0a1e928"
+  url "https://github.com/smriti-memcore/aimeter/releases/download/v0.2.4/aimeter-v0.2.4.tar.gz"
+  sha256 "a27a6b020f0faf019f5dde7c7c973dd12f77dcf0026346638306f5a987a8f725"
   license "MIT"
 
   depends_on :macos
